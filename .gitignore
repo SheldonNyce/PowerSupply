@@ -58,3 +58,5 @@ nbproject/Makefile-variables.mk
 nbproject/Package-default.bash
 nbproject/private/SuppressibleMessageMemo.properties
 *.smv
+*Makefile-genesis.properties
+/nbproject/Makefile-genesis.properties
