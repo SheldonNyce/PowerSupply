@@ -17,33 +17,41 @@
 
 int main()
 {
-  AD1PCFGL = 0x0; // set all pins to digital except AN0 and AN1 
-  TRISB = 0;
-  TRISA = 0;
-  LATB = 0;
+  AD1PCFGL = 0xffff; // set all pins to digital except AN0 and AN1 
+ 
   LATA = 0;
-  PORTB = 0;
+  TRISA = 0;
   PORTA = 0;
 
-  unsigned int x = 0;
-  unsigned int y = 0;
+  LATB = 0;
+  TRISB = 0;
+  PORTB = 0;
+
+  unsigned int A;
+  unsigned int B;
+  unsigned int relay;
+  int delay;
+  int delay2;
 
   for (;;)
-  {
-    PORTA = 0xffff;
-    PORTB = 0xffff;
-
-    for (x = 0; x < 0xfff; x++)
+  {  
+    A = PORTB;
+//    B = PORTBbits.RB1;
+    for (delay = 0; delay < 0xffff; delay++)
     {
-      y = y * 2;
+      for (delay2 = 0; delay2 < 0xf; delay2++)
+      {
+        Nop();
+      }
     }
-
-    PORTA = 0x0000;
-    PORTB = 0x0000;
-
-    for (x = 0; x < 0xfff; x++)
+//    relay = !A & B;
+    if (A)
     {
-      y = y * 2;
+      PORTA = 0;
+    }
+    else
+    {
+      PORTA = 0xffff;
     }
   }
 
